@@ -43,6 +43,51 @@
   }
 
   /**
+   * Light / Dark theme toggle
+   */
+  const themeToggle = select('#theme-toggle')
+  const themeStorageKey = 'portfolio-theme'
+
+  const updateThemeToggleUi = (isDarkMode) => {
+    if (!themeToggle) {
+      return
+    }
+
+    const icon = themeToggle.querySelector('i')
+    const label = themeToggle.querySelector('span')
+
+    if (icon) {
+      icon.className = isDarkMode ? 'bx bx-sun' : 'bx bx-moon'
+    }
+
+    if (label) {
+      label.textContent = isDarkMode ? 'Light mode' : 'Dark mode'
+    }
+
+    themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to light mode' : 'Switch to dark mode')
+  }
+
+  const applyTheme = (theme) => {
+    const isDarkMode = theme === 'dark'
+    document.body.classList.toggle('dark-mode', isDarkMode)
+    document.body.classList.toggle('light-mode', !isDarkMode)
+    updateThemeToggleUi(isDarkMode)
+  }
+
+  const savedTheme = localStorage.getItem(themeStorageKey)
+  const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  applyTheme(savedTheme || preferredTheme)
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isCurrentlyDark = document.body.classList.contains('dark-mode')
+      const nextTheme = isCurrentlyDark ? 'light' : 'dark'
+      applyTheme(nextTheme)
+      localStorage.setItem(themeStorageKey, nextTheme)
+    })
+  }
+
+  /**
    * Navbar links active state on scroll
    */
   let navbarlinks = select('#navbar .scrollto', true)
@@ -142,6 +187,113 @@
       backDelay: 2000
     });
   }
+
+  /**
+   * Hero animated nodes network
+   */
+  const initHeroNetwork = () => {
+    const hero = select('#hero')
+    const canvas = select('#hero-network')
+
+    if (!hero || !canvas) {
+      return
+    }
+
+    const context = canvas.getContext('2d')
+    if (!context) {
+      return
+    }
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    let width = 0
+    let height = 0
+    let points = []
+    let animationFrame = null
+
+    const createPoints = (count) => {
+      points = Array.from({ length: count }, () => {
+        const speed = 0.35 + Math.random() * 0.45
+        const direction = Math.random() * Math.PI * 2
+
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: Math.cos(direction) * speed,
+          vy: Math.sin(direction) * speed,
+          radius: 1 + Math.random() * 1.8
+        }
+      })
+    }
+
+    const resize = () => {
+      width = hero.clientWidth
+      height = hero.clientHeight
+
+      canvas.width = Math.floor(width * dpr)
+      canvas.height = Math.floor(height * dpr)
+      context.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+      const count = Math.max(35, Math.min(90, Math.floor((width * height) / 18000)))
+      createPoints(count)
+    }
+
+    const draw = () => {
+      context.clearRect(0, 0, width, height)
+
+      points.forEach((point, index) => {
+        point.x += point.vx
+        point.y += point.vy
+
+        if (point.x <= 0 || point.x >= width) {
+          point.vx *= -1
+        }
+        if (point.y <= 0 || point.y >= height) {
+          point.vy *= -1
+        }
+
+        context.beginPath()
+        context.arc(point.x, point.y, point.radius, 0, Math.PI * 2)
+        context.fillStyle = 'rgba(191, 219, 254, 0.9)'
+        context.fill()
+
+        for (let nextIndex = index + 1; nextIndex < points.length; nextIndex++) {
+          const nextPoint = points[nextIndex]
+          const distanceX = point.x - nextPoint.x
+          const distanceY = point.y - nextPoint.y
+          const distance = Math.hypot(distanceX, distanceY)
+
+          if (distance < 125) {
+            const opacity = 1 - distance / 125
+            context.beginPath()
+            context.moveTo(point.x, point.y)
+            context.lineTo(nextPoint.x, nextPoint.y)
+            context.strokeStyle = `rgba(147, 197, 253, ${opacity * 0.45})`
+            context.lineWidth = 1
+            context.stroke()
+          }
+        }
+      })
+
+      animationFrame = requestAnimationFrame(draw)
+    }
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame)
+      } else {
+        cancelAnimationFrame(animationFrame)
+        animationFrame = requestAnimationFrame(draw)
+      }
+    }
+
+    resize()
+    draw()
+
+    window.addEventListener('resize', resize)
+    document.addEventListener('visibilitychange', onVisibilityChange)
+  }
+
+  window.addEventListener('load', initHeroNetwork)
 
   /**
    * Skills animation
