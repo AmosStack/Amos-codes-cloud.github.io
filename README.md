@@ -13,7 +13,7 @@ Premium portfolio featuring a contemporary design system with:
 - **Glass-effect login form** with responsive styling
 - **Modern color system** with brand colors for each technology skill
 
-## Features
+## Features included
 
 - **Floating Sidebar Navigation**: Fixed rounded sidebar with centered navigation links
 - **Hero Network Animation**: HTML5 Canvas-based animated background layer
