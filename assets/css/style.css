@@ -483,141 +483,11 @@ section {
   padding-top: 5px;
 }
 
-.contact .info .social-links {
-  padding-left: 60px;
-}
-
-.contact .info .social-links a {
-  font-size: 18px;
-  display: inline-block;
-  background: #333;
-  color: #fff;
-  line-height: 1;
-  padding: 8px 0;
-  border-radius: 50%;
-  text-align: center;
-  width: 36px;
-  height: 36px;
-  transition: 0.3s;
-  margin-right: 10px;
-}
-
-.contact .info .social-links a:hover {
-  background: #149ddd;
-  color: #fff;
-}
-
 .contact .info .email:hover i,
 .contact .info .address:hover i,
 .contact .info .phone:hover i {
   background: #149ddd;
   color: #fff;
-}
-
-.contact .php-email-form {
-  width: 100%;
-  padding: 30px;
-  background: #fff;
-  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
-}
-
-.contact .php-email-form .form-group {
-  padding-bottom: 8px;
-}
-
-.contact .php-email-form .validate {
-  display: none;
-  color: red;
-  margin: 0 0 15px 0;
-  font-weight: 400;
-  font-size: 13px;
-}
-
-.contact .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .error-message br+br {
-  margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-  display: none;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-}
-
-.contact .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
-  animation: animate-loading 1s linear infinite;
-}
-
-.contact .php-email-form .form-group {
-  margin-bottom: 15px;
-}
-
-.contact .php-email-form label {
-  padding-bottom: 8px;
-}
-
-.contact .php-email-form input,
-.contact .php-email-form textarea {
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-}
-
-.contact .php-email-form input {
-  height: 44px;
-}
-
-.contact .php-email-form textarea {
-  padding: 10px 15px;
-}
-
-.contact .php-email-form button[type=submit] {
-  background: #149ddd;
-  border: 0;
-  padding: 10px 24px;
-  color: #fff;
-  transition: 0.4s;
-  border-radius: 4px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-  background: #37b3ed;
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /*--------------------------------------------------------------
@@ -1075,11 +945,66 @@ section {
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 16px;
+  transition: transform 0.35s ease;
+}
+
+.projects .project-media {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.projects .project-media-links {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.projects .project-media-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(15, 23, 42, 0.42);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  margin-top: 30px;
+  transition: 0.3s;
+}
+
+.projects .project-media-link:hover {
+  color: #fff;
+  background: var(--brand-500);
+  border-color: rgba(96, 165, 250, 0.9);
 }
 
 .projects .project-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 26px rgba(15, 23, 42, 0.1);
+}
+
+.projects .project-card:hover .project-media-links {
+  opacity: 1;
+}
+
+.projects .project-card:hover .project-media-link {
+  margin-top: 0;
+}
+
+.projects .project-card:hover .project-image {
+  transform: scale(1.06);
 }
 
 .projects .project-card h3 {
@@ -1090,35 +1015,6 @@ section {
 .projects .project-card p {
   color: var(--text-2);
   margin-bottom: 18px;
-}
-
-.projects .project-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(90deg, var(--brand-500), #3b82f6);
-}
-
-.projects .project-links {
-  display: flex;
-  gap: 10px;
-}
-
-.projects .project-link.github {
-  background: linear-gradient(90deg, #0f172a, #334155);
-}
-
-.projects .project-link:hover {
-  color: #fff;
-  background: linear-gradient(90deg, var(--brand-600), var(--brand-500));
-}
-
-.projects .project-link.github:hover {
-  background: linear-gradient(90deg, #020617, #1e293b);
 }
 
 .skills-orbit {
@@ -1347,11 +1243,82 @@ section {
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
 }
 
-.contact .map-embed {
-  border: 0;
+.contact .php-email-form {
   width: 100%;
-  height: 270px;
-  border-radius: 14px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.contact .php-email-form .form-group {
+  margin-bottom: 15px;
+}
+
+.contact .php-email-form label {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.contact .php-email-form input,
+.contact .php-email-form textarea {
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 12px;
+  box-shadow: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #0f172a;
+}
+
+.contact .php-email-form input {
+  height: 44px;
+}
+
+.contact .php-email-form textarea {
+  padding: 10px 15px;
+}
+
+.contact .php-email-form input:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.contact .php-email-form button[type=submit] {
+  background: linear-gradient(90deg, var(--brand-500), #3b82f6);
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.3s;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.contact .php-email-form button[type=submit]:hover {
+  background: linear-gradient(90deg, var(--brand-600), var(--brand-500));
+}
+
+body.dark-mode .contact .php-email-form label,
+body.dark-mode .contact .php-email-form input,
+body.dark-mode .contact .php-email-form textarea {
+  color: #ffffff !important;
+}
+
+body.dark-mode .contact .php-email-form input,
+body.dark-mode .contact .php-email-form textarea {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+body.dark-mode .contact .php-email-form input::placeholder,
+body.dark-mode .contact .php-email-form textarea::placeholder {
+  color: rgba(226, 232, 240, 0.85);
 }
 
 .contact .info i {
@@ -1377,8 +1344,7 @@ section {
   #projects .container,
   #skills .container,
   #resume .container,
-  #contact .container,
-  #gallery .container {
+  #contact .container {
     border-radius: 14px;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -1389,67 +1355,6 @@ section {
   }
 }
 
-
-  
-
-
-
-
-
-
-/*--------------------------------------------------------------
-# Gallery Section
---------------------------------------------------------------*/
-.gallery .gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.gallery .gallery-item img {
-  transition: 0.3s;
-}
-
-.gallery .gallery-links {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: all ease-in-out 0.3s;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 3;
-}
-
-.gallery .gallery-links .preview-link,
-.gallery .gallery-links .details-link {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.5);
-  transition: 0.3s;
-  line-height: 1.2;
-  margin: 30px 8px 0 8px;
-}
-
-.gallery .gallery-links .preview-link:hover,
-.gallery .gallery-links .details-link:hover {
-  color: #ffffff;
-}
-
-.gallery .gallery-links .details-link {
-  font-size: 30px;
-  line-height: 0;
-}
-
-.gallery .gallery-item:hover .gallery-links {
-  opacity: 1;
-}
-
-.gallery .gallery-item:hover .preview-link,
-.gallery .gallery-item:hover .details-link {
-  margin-top: 0;
-}
-
-.gallery .gallery-item:hover img {
-  transform: scale(1.1);
-}
 
 .glightbox-clean .gslide-description {
   background: #272727;
