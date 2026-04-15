@@ -375,102 +375,69 @@ section {
   margin-bottom: 0;
 }
 
+/*--------------------------------------------------------------
+# About - Download Button
+--------------------------------------------------------------*/
 .about-resume-download {
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .resume-download-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 11px 18px;
+  padding: 12px 24px;
   border-radius: 999px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.95rem;
+  letter-spacing: 0.4px;
   color: #ffffff;
-  background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
-  border: 1px solid rgba(15, 23, 42, 0.2);
-  box-shadow: 0 8px 20px rgba(14, 116, 144, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .resume-download-btn:hover {
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(14, 116, 144, 0.35);
-  filter: saturate(1.08);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+}
+
+.resume-download-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
 }
 
 .resume-download-btn:focus-visible {
-  outline: 3px solid rgba(20, 157, 221, 0.45);
-  outline-offset: 3px;
+  outline: 3px solid rgba(59, 130, 246, 0.4);
+  outline-offset: 2px;
 }
 
 .resume-download-btn i {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
 }
 
-
-/*--------------------------------------------------------------
-# Resume
---------------------------------------------------------------*/
-.resume .resume-title {
-  font-size: 26px;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: #050d18;
+.resume-download-btn:hover i {
+  transform: translateY(-2px);
 }
 
-.resume .resume-item {
-  padding: 0 0 20px 20px;
-  margin-top: -2px;
-  border-left: 2px solid #1f5297;
-  position: relative;
+body.dark-mode .resume-download-btn {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
-.resume .resume-item h4 {
-  line-height: 18px;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
-  color: #050d18;
-  margin-bottom: 10px;
+body.dark-mode .resume-download-btn:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.4);
 }
 
-.resume .resume-item h5 {
-  font-size: 16px;
-  background: #e4edf9;
-  padding: 5px 15px;
-  display: inline-block;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.resume .resume-item ul {
-  padding-left: 20px;
-}
-
-.resume .resume-item ul li {
-  padding-bottom: 10px;
-}
-
-.resume .resume-item:last-child {
-  padding-bottom: 0;
-}
-
-.resume .resume-item::before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50px;
-  left: -9px;
-  top: 0;
-  background: #fff;
-  border: 2px solid #1f5297;
-}
 
 /*--------------------------------------------------------------
 # Contact
@@ -636,7 +603,6 @@ body.dark-mode h6,
 body.dark-mode .nav-menu a,
 body.dark-mode .nav-menu a i,
 body.dark-mode .section-title p,
-body.dark-mode .resume .resume-item h5,
 body.dark-mode .contact .info p,
 body.dark-mode .contact .info h4 {
   color: #ffffff !important;
@@ -645,36 +611,26 @@ body.dark-mode .contact .info h4 {
 body.light-mode #about,
 body.light-mode #projects,
 body.light-mode #skills,
-body.light-mode #resume,
 body.light-mode #contact,
 body.light-mode #about p,
 body.light-mode #projects p,
 body.light-mode #skills p,
-body.light-mode #resume p,
 body.light-mode #contact p,
 body.light-mode #about span,
 body.light-mode #projects span,
 body.light-mode #skills span,
-body.light-mode #resume span,
 body.light-mode #contact span,
 body.light-mode #about li,
-body.light-mode #resume li,
 body.light-mode #contact li,
 body.light-mode #about strong,
-body.light-mode #resume strong,
 body.light-mode #contact strong,
 body.light-mode #about em,
-body.light-mode #resume em,
 body.light-mode #contact em,
 body.light-mode #about h2,
 body.light-mode #about h3,
 body.light-mode #projects h2,
 body.light-mode #projects h3,
 body.light-mode #skills h2,
-body.light-mode #resume h2,
-body.light-mode #resume h3,
-body.light-mode #resume h4,
-body.light-mode #resume h5,
 body.light-mode #contact h2,
 body.light-mode #contact h4 {
   color: #0f172a !important;
@@ -725,8 +681,7 @@ h6 {
 }
 
 #header .profile h1,
-.skills .progress .skill,
-.resume .resume-item h4 {
+.skills .progress .skill {
   font-family: "Inter", sans-serif;
 }
 
@@ -1003,7 +958,6 @@ section {
 #about .container,
 #projects .container,
 #skills .container,
-#resume .container,
 #contact .container {
   background: var(--glass-panel-bg);
   border: 1px solid var(--glass-panel-border);
@@ -1015,8 +969,7 @@ section {
   padding-bottom: 36px;
 }
 
-.about .content ul li,
-.resume .resume-item ul li {
+.about .content ul li {
   color: var(--text-2);
 }
 
@@ -1317,21 +1270,6 @@ section {
   }
 }
 
-.resume .resume-item {
-  border-left: 2px solid #cbd5e1;
-}
-
-.resume .resume-item::before {
-  background: var(--surface-1);
-  border: 2px solid var(--brand-500);
-}
-
-.resume .resume-item h5 {
-  border-radius: 999px;
-  background: var(--surface-2);
-  color: #1e3a8a;
-}
-
 .contact {
   padding-bottom: 84px;
 }
@@ -1445,7 +1383,6 @@ body.dark-mode .contact .php-email-form textarea::placeholder {
   #about .container,
   #projects .container,
   #skills .container,
-  #resume .container,
   #contact .container {
     border-radius: 14px;
     padding-top: 24px;
